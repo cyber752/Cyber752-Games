@@ -53,36 +53,35 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 80%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at var(--x1, 20%) var(--y1, 80%), rgba(255, 23, 68, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at var(--x2, 80%) var(--y2, 20%), rgba(233, 30, 99, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at var(--x3, 40%) var(--y3, 40%), rgba(156, 39, 176, 0.04) 0%, transparent 50%),
                 linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
             pointer-events: none;
             z-index: -1;
-            animation: gradientShift 20s ease-in-out infinite;
+            animation: gradientShift 15s ease-in-out infinite;
         }
 
         @keyframes gradientShift {
             0%, 100% {
-                background: 
-                    radial-gradient(circle at 20% 80%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 40%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
-                    linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+                --x1: 20%; --y1: 80%;
+                --x2: 80%; --y2: 20%;
+                --x3: 40%; --y3: 40%;
             }
-            33% {
-                background: 
-                    radial-gradient(circle at 60% 30%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 30% 70%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 60%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
-                    linear-gradient(45deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+            25% {
+                --x1: 60%; --y1: 30%;
+                --x2: 30%; --y2: 70%;
+                --x3: 80%; --y3: 60%;
             }
-            66% {
-                background: 
-                    radial-gradient(circle at 80% 60%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
-                    radial-gradient(circle at 20% 40%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
-                    radial-gradient(circle at 60% 80%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
-                    linear-gradient(225deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+            50% {
+                --x1: 80%; --y1: 60%;
+                --x2: 20%; --y2: 40%;
+                --x3: 60%; --y3: 80%;
+            }
+            75% {
+                --x1: 40%; --y1: 20%;
+                --x2: 70%; --y2: 80%;
+                --x3: 20%; --y3: 60%;
             }
         }
 
@@ -100,37 +99,70 @@
             padding: 0 2rem;
         }
 
-        /* Games Section */
+        /* Games Section - Cinematic Layout */
         #games {
-            padding: 4rem 0;
+            padding: 6rem 0;
             flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        #games .inner-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+        .games-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .games-container {
+            display: flex;
+            justify-content: center;
             align-items: center;
-            justify-items: center;
+            gap: 2rem;
+            transform-style: preserve-3d;
         }
 
         .game {
             position: relative;
-            width: 100%;
-            max-width: 400px;
-            height: 250px;
+            width: 320px;
+            height: 240px;
             border-radius: 20px;
             overflow: hidden;
             background-color: var(--bg-secondary);
-            background-size: contain;
+            background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             border: 2px solid transparent;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             text-decoration: none;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(255, 23, 68, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+        }
+
+        /* Center game (featured) */
+        .game.center {
+            width: 400px;
+            height: 300px;
+            z-index: 3;
+            transform: scale(1.1) rotateY(0deg);
+        }
+
+        /* Side games */
+        .game.left {
+            transform: rotateY(35deg) translateZ(-50px);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .game.right {
+            transform: rotateY(-35deg) translateZ(-50px);
+            opacity: 0.8;
+            z-index: 2;
         }
 
         .game::before {
@@ -167,8 +199,10 @@
         }
 
         .game:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(255, 23, 68, 0.2);
+            transform: scale(1.15) rotateY(0deg) translateZ(30px);
+            box-shadow: 0 25px 50px rgba(255, 23, 68, 0.3);
+            z-index: 10;
+            opacity: 1;
         }
 
         .game:hover::before {
@@ -176,6 +210,27 @@
         }
 
         .game:hover::after {
+            opacity: 1;
+        }
+
+        /* Game title overlay */
+        .game-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem 1.5rem 1rem;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .game:hover .game-title {
             opacity: 1;
         }
 
@@ -188,47 +243,38 @@
         }
 
         #about .inner-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 3rem;
-            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .about-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .logo-container {
-            flex-shrink: 0;
+        .about-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
-            border-radius: 20px;
-            padding: 2px;
-            animation: logoGlow 4s ease-in-out infinite alternate;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .logo-placeholder {
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
+            padding: 3px;
+            animation: logoGlow 3s ease-in-out infinite alternate;
+        }
+
+        .logo img {
             width: 100%;
             height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
             background: var(--bg-dark);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
-            font-size: 1rem;
-            color: var(--primary-pink);
         }
 
         @keyframes logoGlow {
-            0% { box-shadow: 0 0 15px rgba(255, 23, 68, 0.2); }
-            100% { box-shadow: 0 0 25px rgba(233, 30, 99, 0.4); }
+            0% { box-shadow: 0 0 10px rgba(255, 23, 68, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(233, 30, 99, 0.6); }
         }
 
         h1 {
@@ -238,7 +284,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1rem;
             animation: textGlow 3s ease-in-out infinite alternate;
         }
 
@@ -319,29 +364,50 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .games-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .game.left,
+            .game.right {
+                transform: none;
+                opacity: 1;
+            }
+
+            .game {
+                width: 350px;
+                height: 250px;
+            }
+
+            .game.center {
+                width: 400px;
+                height: 300px;
+            }
+        }
+
         @media (max-width: 768px) {
             .inner-container {
                 padding: 0 1rem;
             }
 
-            #games .inner-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .game {
+            .game,
+            .game.center {
+                width: 100%;
+                max-width: 350px;
                 height: 200px;
             }
 
-            #about .inner-container {
-                flex-direction: row;
-                text-align: left;
-                gap: 2rem;
+            .about-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
             }
 
-            .logo-container {
-                width: 100px;
-                height: 100px;
+            .logo {
+                width: 60px;
+                height: 60px;
             }
 
             h1 {
@@ -351,10 +417,15 @@
             p {
                 font-size: 1rem;
             }
+
+            #games {
+                padding: 4rem 0;
+            }
         }
 
         @media (max-width: 480px) {
-            .game {
+            .game,
+            .game.center {
                 height: 180px;
             }
 
@@ -369,6 +440,11 @@
             footer a {
                 width: 40px;
                 height: 40px;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
             }
         }
 
@@ -395,38 +471,39 @@
     <div class="gradient-overlay"></div>
     <div class="content">        
         <section id="games">
-            <div class="inner-container">
-                <a class="game" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank" 
-                   style="background-image: url('/Cyber752-Games/Images/WARN.png');" 
-                   aria-label="Warning - Horror Game on Steam">
-                </a>
-                <a class="game" href="https://store.steampowered.com/app/3487660/The_Bunker/" target="_blank" 
-                   style="background-image: url('/Cyber752-Games/Images/BUNK.png');" 
-                   aria-label="The Bunker - Horror Game on Steam">
-                </a>
-                <a class="game" href="https://store.steampowered.com/app/3552050/Burger_Witch/" target="_blank" 
-                   style="background-image: url('/Cyber752-Games/Images/BURG.png');" 
-                   aria-label="Burger Witch - Horror Game on Steam">
-                </a>
+            <div class="games-showcase">
+                <div class="games-container">
+                    <a class="game left" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank" 
+                       style="background-image: url('/Cyber752-Games/Images/WARN.png');" 
+                       aria-label="Warning - Horror Game on Steam">
+                        <div class="game-title">Warning</div>
+                    </a>
+                    <a class="game center" href="https://store.steampowered.com/app/3487660/The_Bunker/" target="_blank" 
+                       style="background-image: url('/Cyber752-Games/Images/BUNK.png');" 
+                       aria-label="The Bunker - Horror Game on Steam">
+                        <div class="game-title">The Bunker</div>
+                    </a>
+                    <a class="game right" href="https://store.steampowered.com/app/3552050/Burger_Witch/" target="_blank" 
+                       style="background-image: url('/Cyber752-Games/Images/BURG.png');" 
+                       aria-label="Burger Witch - Horror Game on Steam">
+                        <div class="game-title">Burger Witch</div>
+                    </a>
+                </div>
             </div>
         </section>
 
         <section id="about">
             <div class="inner-container">
-                <div class="about-content">
+                <div class="about-header">
+                    <div class="logo">
+                        <img src="/path/to/your/logo.png" alt="Cyber752 Logo">
+                    </div>
                     <h1>Hola!<span class="emoji">&nbsp;👋</span></h1>
-                    <p>                    
-                        <b>Greetings, wanderer...</b> I make horror-themed games, among other things.
-                        <br/>
-                        <span class="quote">"A game to be feared not by graphics but by atmosphere."</span>
-                    </p>
                 </div>
-                <div class="logo-container">
-                    <!-- Replace this div with your actual logo PNG -->
-                    <div class="logo-placeholder">LOGO</div>
-                    <!-- When you have your logo, replace above div with: -->
-                    <!-- <img src="your-logo.png" alt="Cyber752 Games Logo" style="width: 100%; height: 100%; object-fit: contain;"> -->
-                </div>
+                <br/>
+                <p>                    
+                    <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br/> "A game to be feared not by graphics but by atmosphere."
+                </p>
             </div>
         </section>
 
