@@ -52,14 +52,38 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, 
-                rgba(255, 23, 68, 0.15) 0%, 
-                rgba(233, 30, 99, 0.1) 25%, 
-                rgba(156, 39, 176, 0.05) 50%, 
-                rgba(10, 10, 10, 0.8) 75%, 
-                rgba(10, 10, 10, 0.95) 100%);
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
             pointer-events: none;
             z-index: -1;
+            animation: gradientShift 20s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background: 
+                    radial-gradient(circle at 20% 80%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 40%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
+                    linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+            }
+            33% {
+                background: 
+                    radial-gradient(circle at 60% 30%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 30% 70%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 60%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
+                    linear-gradient(45deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+            }
+            66% {
+                background: 
+                    radial-gradient(circle at 80% 60%, rgba(255, 23, 68, 0.08) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 40%, rgba(233, 30, 99, 0.06) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 80%, rgba(156, 39, 176, 0.04) 0%, transparent 50%),
+                    linear-gradient(225deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+            }
         }
 
         .content {
@@ -143,8 +167,8 @@
         }
 
         .game:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(255, 23, 68, 0.3);
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(255, 23, 68, 0.2);
         }
 
         .game:hover::before {
@@ -165,7 +189,7 @@
 
         #about .inner-container {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 3rem;
             flex-wrap: wrap;
         }
@@ -180,31 +204,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
-            border-radius: 50%;
-            padding: 3px;
-            animation: logoGlow 3s ease-in-out infinite alternate;
+            border-radius: 20px;
+            padding: 2px;
+            animation: logoGlow 4s ease-in-out infinite alternate;
         }
 
         .logo-placeholder {
             width: 100%;
             height: 100%;
             background: var(--bg-dark);
-            border-radius: 50%;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'JetBrains Mono', monospace;
             font-weight: 500;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--primary-pink);
         }
 
         @keyframes logoGlow {
-            0% { box-shadow: 0 0 20px rgba(255, 23, 68, 0.3); }
-            100% { box-shadow: 0 0 40px rgba(233, 30, 99, 0.6); }
+            0% { box-shadow: 0 0 15px rgba(255, 23, 68, 0.2); }
+            100% { box-shadow: 0 0 25px rgba(233, 30, 99, 0.4); }
         }
 
         h1 {
@@ -215,12 +239,20 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 1rem;
-            animation: textGlow 2s ease-in-out infinite alternate;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        h1 .emoji {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            color: #FFD700;
         }
 
         @keyframes textGlow {
-            0% { filter: drop-shadow(0 0 5px rgba(255, 23, 68, 0.3)); }
-            100% { filter: drop-shadow(0 0 15px rgba(233, 30, 99, 0.6)); }
+            0% { filter: drop-shadow(0 0 3px rgba(255, 23, 68, 0.2)); }
+            100% { filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.4)); }
         }
 
         p {
@@ -271,9 +303,9 @@
         }
 
         footer a:hover {
-            transform: translateY(-3px) scale(1.1);
+            transform: translateY(-2px) scale(1.05);
             background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
-            box-shadow: 0 10px 20px rgba(255, 23, 68, 0.3);
+            box-shadow: 0 8px 16px rgba(255, 23, 68, 0.2);
         }
 
         footer a img,
@@ -302,14 +334,14 @@
             }
 
             #about .inner-container {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+                text-align: left;
                 gap: 2rem;
             }
 
             .logo-container {
-                width: 120px;
-                height: 120px;
+                width: 100px;
+                height: 100px;
             }
 
             h1 {
@@ -382,7 +414,7 @@
         <section id="about">
             <div class="inner-container">
                 <div class="about-content">
-                    <h1>Hola!&nbsp;👋</h1>
+                    <h1>Hola!<span class="emoji">&nbsp;👋</span></h1>
                     <p>                    
                         <b>Greetings, wanderer...</b> I make horror-themed games, among other things.
                         <br/>
