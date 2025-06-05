@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    
+
+<head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-213EDVX5G4"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-213EDVX5G4');
     </script>
@@ -15,8 +16,10 @@
     <meta name="theme-color" content="#FF1744">
     <title>Andrew Mikhail | Cyber752 Games</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -38,7 +41,8 @@
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        html, body {
+        html,
+        body {
             height: 100vh;
             overflow: hidden;
             font-family: 'Inter', sans-serif;
@@ -53,7 +57,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
+            background:
                 radial-gradient(circle at var(--x1, 20%) var(--y1, 80%), rgba(255, 23, 68, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at var(--x2, 80%) var(--y2, 20%), rgba(233, 30, 99, 0.06) 0%, transparent 50%),
                 radial-gradient(circle at var(--x3, 40%) var(--y3, 40%), rgba(156, 39, 176, 0.04) 0%, transparent 50%),
@@ -94,25 +98,42 @@
         }
 
         @keyframes gradientShift {
-            0%, 100% {
-                --x1: 20%; --y1: 80%;
-                --x2: 80%; --y2: 20%;
-                --x3: 40%; --y3: 40%;
+
+            0%,
+            100% {
+                --x1: 20%;
+                --y1: 80%;
+                --x2: 80%;
+                --y2: 20%;
+                --x3: 40%;
+                --y3: 40%;
             }
+
             25% {
-                --x1: 60%; --y1: 30%;
-                --x2: 30%; --y2: 70%;
-                --x3: 80%; --y3: 60%;
+                --x1: 60%;
+                --y1: 30%;
+                --x2: 30%;
+                --y2: 70%;
+                --x3: 80%;
+                --y3: 60%;
             }
+
             50% {
-                --x1: 80%; --y1: 60%;
-                --x2: 20%; --y2: 40%;
-                --x3: 60%; --y3: 80%;
+                --x1: 80%;
+                --y1: 60%;
+                --x2: 20%;
+                --y2: 40%;
+                --x3: 60%;
+                --y3: 80%;
             }
+
             75% {
-                --x1: 40%; --y1: 20%;
-                --x2: 70%; --y2: 80%;
-                --x3: 20%; --y3: 60%;
+                --x1: 40%;
+                --y1: 20%;
+                --x2: 70%;
+                --y2: 80%;
+                --x3: 20%;
+                --y3: 60%;
             }
         }
 
@@ -172,8 +193,13 @@
         }
 
         @keyframes logoGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 23, 68, 0.3); }
-            100% { box-shadow: 0 0 20px rgba(233, 30, 99, 0.6); }
+            0% {
+                box-shadow: 0 0 10px rgba(255, 23, 68, 0.3);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(233, 30, 99, 0.6);
+            }
         }
 
         h1 {
@@ -196,8 +222,13 @@
         }
 
         @keyframes textGlow {
-            0% { filter: drop-shadow(0 0 3px rgba(255, 23, 68, 0.2)); }
-            100% { filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.4)); }
+            0% {
+                filter: drop-shadow(0 0 3px rgba(255, 23, 68, 0.2));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.4));
+            }
         }
 
         .about-text {
@@ -266,7 +297,7 @@
             cursor: pointer;
             text-decoration: none;
             backdrop-filter: blur(10px);
-            box-shadow: 
+            box-shadow:
                 0 15px 35px rgba(0, 0, 0, 0.5),
                 0 5px 15px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -281,10 +312,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, 
-                rgba(255, 23, 68, 0.1) 0%, 
-                rgba(233, 30, 99, 0.05) 50%, 
-                rgba(156, 39, 176, 0.1) 100%);
+            background: linear-gradient(135deg,
+                    rgba(255, 23, 68, 0.1) 0%,
+                    rgba(233, 30, 99, 0.05) 50%,
+                    rgba(156, 39, 176, 0.1) 100%);
             opacity: 0;
             transition: opacity 0.5s ease;
             border-radius: 18px;
@@ -298,11 +329,11 @@
             left: -3px;
             right: -3px;
             bottom: -3px;
-            background: linear-gradient(45deg, 
-                var(--primary-red), 
-                var(--primary-pink), 
-                var(--accent-purple),
-                var(--primary-red));
+            background: linear-gradient(45deg,
+                    var(--primary-red),
+                    var(--primary-pink),
+                    var(--accent-purple),
+                    var(--primary-red));
             background-size: 300% 300%;
             border-radius: 23px;
             opacity: 0;
@@ -312,9 +343,17 @@
         }
 
         @keyframes gradientBorder {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .game.center {
@@ -322,7 +361,7 @@
             height: clamp(190px, 22vw, 300px);
             z-index: 3;
             transform: scale(1.05) translateZ(20px);
-            box-shadow: 
+            box-shadow:
                 0 25px 50px rgba(0, 0, 0, 0.6),
                 0 10px 25px rgba(255, 23, 68, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -342,7 +381,7 @@
 
         .game:hover {
             transform: scale(1.2) translateY(-20px) translateZ(50px) rotateX(5deg);
-            box-shadow: 
+            box-shadow:
                 0 35px 70px rgba(0, 0, 0, 0.7),
                 0 15px 30px rgba(255, 23, 68, 0.4),
                 0 5px 15px rgba(233, 30, 99, 0.3),
@@ -365,7 +404,7 @@
             transform: scale(1.2) translateY(-20px) translateZ(50px) rotateX(5deg) rotateY(0deg);
         }
 
-        .game > * {
+        .game>* {
             position: relative;
             z-index: 2;
         }
@@ -420,8 +459,17 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) scale(0); opacity: 0; }
-            50% { transform: translateY(-20px) scale(1); opacity: 1; }
+
+            0%,
+            100% {
+                transform: translateY(0) scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1);
+                opacity: 1;
+            }
         }
 
         /* Footer */
@@ -516,7 +564,7 @@
             .about-header {
                 gap: 0.5rem;
             }
-            
+
             .games-container {
                 gap: 0.5rem;
             }
@@ -536,18 +584,18 @@
                 min-height: 80px;
                 padding: 0.5rem;
             }
-            
+
             .about-text {
                 font-size: 0.8rem;
                 line-height: 1.4;
             }
-            
+
             .games-container {
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .game,
             .game.center,
             .game.left,
@@ -563,6 +611,7 @@
 
         /* Accessibility */
         @media (prefers-reduced-motion: reduce) {
+
             *,
             *::before,
             *::after {
@@ -579,11 +628,12 @@
         }
     </style>
 </head>
+
 <body>
     <div class="gradient-overlay" id="gradientOverlay"></div>
     <div class="game-bg-overlay" id="gameBgOverlay"></div>
-    
-    <div class="main-container">        
+
+    <div class="main-container">
         <section class="about-section" id="aboutSection">
             <div class="about-header">
                 <div class="logo">
@@ -591,32 +641,31 @@
                 </div>
                 <h1>Hola!<span class="emoji">&nbsp;👋</span></h1>
             </div>
-            <p class="about-text" id="aboutText">                    
-                <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br/> "A game to be feared not by graphics but by atmosphere."
+            <p class="about-text" id="aboutText">
+                <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br /> "A game to be
+                feared not by graphics but by atmosphere."
             </p>
         </section>
 
         <section class="games-section">
             <div class="games-showcase">
                 <div class="games-container">
-                    <a class="game left" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank" 
-                       style="background-image: url('/Cyber752-Games/Images/WARN.png');" 
-                       aria-label="Warning - Horror Game on Steam"
-                       data-bg-image="/Cyber752-Games/Images/WARN.png">
+                    <a class="game left" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank"
+                        style="background-image: url('/Cyber752-Games/Images/WARN.png');"
+                        aria-label="Warning - Horror Game on Steam" data-bg-image="/Cyber752-Games/Images/WARN.png">
                         <div class="game-particles"></div>
                         <div class="game-title">Warning</div>
                     </a>
-                    <a class="game center" href="https://store.steampowered.com/app/3487660/The_Bunker/" target="_blank" 
-                       style="background-image: url('/Cyber752-Games/Images/BUNK.png');" 
-                       aria-label="The Bunker - Horror Game on Steam"
-                       data-bg-image="/Cyber752-Games/Images/BUNK.png">
+                    <a class="game center" href="https://store.steampowered.com/app/3487660/The_Bunker/" target="_blank"
+                        style="background-image: url('/Cyber752-Games/Images/BUNK.png');"
+                        aria-label="The Bunker - Horror Game on Steam" data-bg-image="/Cyber752-Games/Images/BUNK.png">
                         <div class="game-particles"></div>
                         <div class="game-title">The Bunker</div>
                     </a>
-                    <a class="game right" href="https://store.steampowered.com/app/3552050/Burger_Witch/" target="_blank" 
-                       style="background-image: url('/Cyber752-Games/Images/BURG.png');" 
-                       aria-label="Burger Witch - Horror Game on Steam"
-                       data-bg-image="/Cyber752-Games/Images/BURG.png">
+                    <a class="game right" href="https://store.steampowered.com/app/3552050/Burger_Witch/"
+                        target="_blank" style="background-image: url('/Cyber752-Games/Images/BURG.png');"
+                        aria-label="Burger Witch - Horror Game on Steam"
+                        data-bg-image="/Cyber752-Games/Images/BURG.png">
                         <div class="game-particles"></div>
                         <div class="game-title">Burger Witch</div>
                     </a>
@@ -626,11 +675,14 @@
 
         <footer class="footer-section" id="footerSection">
             <div class="footer-content">
-                <a href="https://store.steampowered.com/search/?developer=Cyber752" title="Steam" target="_blank" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1024px-Steam_icon_logo.svg.png" alt="Steam">
+                <a href="https://store.steampowered.com/search/?developer=Cyber752" title="Steam" target="_blank"
+                    rel="noopener">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1024px-Steam_icon_logo.svg.png"
+                        alt="Steam">
                 </a>
-<a href="https://www.youtube.com/@cyber752/" title="Youtube" target="_blank" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/archive/e/ef/20220706172050%21Youtube_logo.png" alt="Youtube">
+                <a href="https://www.youtube.com/@cyber752/" title="Youtube" target="_blank" rel="noopener">
+                    <img src="/Cyber752-Games/icons/youtube_logo.png"
+                        alt="Youtube">
                 </a>
                 <a href="https://cyber752.itch.io/" title="Itch.io" target="_blank" rel="noopener">
                     <img src="https://static.itch.io/images/app-icon.svg" alt="Itch.io">
@@ -651,50 +703,50 @@
 
         // Enhanced hover effects with persistent background
         games.forEach(game => {
-            game.addEventListener('mouseenter', function() {
+            game.addEventListener('mouseenter', function () {
                 const bgImage = this.getAttribute('data-bg-image');
-                
+
                 // Clear any existing timeout
                 if (currentBgTimeout) {
                     clearTimeout(currentBgTimeout);
                     currentBgTimeout = null;
                 }
-                
+
                 // Update the background immediately
                 updateBackground(bgImage, true);
-                
+
                 // Generate particles on hover
                 generateParticles(this);
             });
 
             // Add mouse move parallax effect
-            game.addEventListener('mousemove', function(e) {
+            game.addEventListener('mousemove', function (e) {
                 const rect = this.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
+
                 const rotateX = (y - centerY) / 10;
                 const rotateY = (centerX - x) / 10;
-                
+
                 if (!this.classList.contains('mobile-hover')) {
                     this.style.transform = `scale(1.2) translateY(-20px) translateZ(50px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 }
             });
 
-            game.addEventListener('mouseleave', function() {
+            game.addEventListener('mouseleave', function () {
                 if (!this.classList.contains('mobile-hover')) {
                     this.style.transform = '';
                 }
                 clearParticles(this);
-                
+
                 // The background stays persistent - no change on mouse leave
             });
 
             // Touch events for mobile
-            game.addEventListener('touchstart', function() {
+            game.addEventListener('touchstart', function () {
                 const bgImage = this.getAttribute('data-bg-image');
                 updateBackground(bgImage, true);
             });
@@ -704,10 +756,10 @@
         function updateBackground(imagePath, isHovered = false) {
             lastHoveredImage = imagePath;
             bgOverlay.style.backgroundImage = `url('${imagePath}')`;
-            
+
             // Remove existing classes
             bgOverlay.classList.remove('active', 'intense');
-            
+
             // Add appropriate class with slight delay for smooth transition
             setTimeout(() => {
                 bgOverlay.classList.add(isHovered ? 'intense' : 'active');
@@ -717,7 +769,7 @@
             aboutSection.classList.add('bg-active');
             aboutText.classList.add('bg-active');
             footerSection.classList.add('bg-active');
-            
+
             // Slightly dim the gradient overlay when background is active
             gradientOverlay.style.opacity = '0.8';
         }
@@ -726,7 +778,7 @@
         function generateParticles(gameElement) {
             const particlesContainer = gameElement.querySelector('.game-particles');
             const particleCount = 8;
-            
+
             for (let i = 0; i < particleCount; i++) {
                 setTimeout(() => {
                     const particle = document.createElement('div');
@@ -735,13 +787,13 @@
                     particle.style.top = '100%';
                     particle.style.animationDelay = Math.random() * 2 + 's';
                     particle.style.animationDuration = (2 + Math.random() * 2) + 's';
-                    
+
                     // Vary particle colors
                     const colors = ['#FF1744', '#E91E63', '#9C27B0'];
                     particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    
+
                     particlesContainer.appendChild(particle);
-                    
+
                     // Remove particle after animation
                     setTimeout(() => {
                         if (particle.parentNode) {
@@ -758,7 +810,7 @@
         }
 
         // Set initial background to the center game
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const centerGame = document.querySelector('.game.center');
             if (centerGame) {
                 const initialBg = centerGame.getAttribute('data-bg-image');
@@ -777,7 +829,7 @@
         });
 
         // Handle window resize
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             const isMobile = window.innerWidth <= 768;
             games.forEach(game => {
                 if (isMobile) {
