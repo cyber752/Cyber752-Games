@@ -38,12 +38,13 @@
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        body {
+        html, body {
+            height: 100vh;
+            overflow: hidden;
             font-family: 'Inter', sans-serif;
             background: var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         .gradient-overlay {
@@ -62,7 +63,6 @@
             animation: gradientShift 15s ease-in-out infinite;
         }
 
-        /* New background image overlay for hovered games */
         .game-bg-overlay {
             position: fixed;
             top: 0;
@@ -105,48 +105,45 @@
             }
         }
 
-        .content {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
+        .main-container {
             display: flex;
             flex-direction: column;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
-        .inner-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* About Section - Now on top */
-        #about {
-            padding: 6rem 0 4rem 0;
+        /* About Section - Top portion */
+        .about-section {
+            flex: 0 0 auto;
+            padding: clamp(1rem, 4vh, 3rem) clamp(1rem, 4vw, 2rem);
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-        }
-
-        #about .inner-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            min-height: clamp(200px, 30vh, 300px);
         }
 
         .about-header {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
+            gap: clamp(0.5rem, 2vw, 1.5rem);
+            margin-bottom: clamp(0.5rem, 2vh, 1rem);
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .logo {
-            width: 80px;
-            height: 80px;
+            width: clamp(40px, 8vw, 80px);
+            height: clamp(40px, 8vw, 80px);
             border-radius: 50%;
             background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
             padding: 3px;
             animation: logoGlow 3s ease-in-out infinite alternate;
+            flex-shrink: 0;
         }
 
         .logo img {
@@ -163,13 +160,14 @@
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(1.5rem, 5vw, 3rem);
             font-weight: 700;
             background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: textGlow 3s ease-in-out infinite alternate;
+            margin: 0;
         }
 
         h1 .emoji {
@@ -185,56 +183,55 @@
             100% { filter: drop-shadow(0 0 8px rgba(233, 30, 99, 0.4)); }
         }
 
-        p {
-            font-size: 1.1rem;
+        .about-text {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             color: var(--text-secondary);
-            line-height: 1.8;
+            line-height: 1.6;
+            max-width: 90%;
         }
 
-        p b {
+        .about-text b {
             color: var(--text-primary);
             font-weight: 600;
         }
 
-        .quote {
-            font-style: italic;
-            color: var(--light-pink);
-            margin-top: 1rem;
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        /* Games Section - Cinematic Layout */
-        #games {
-            padding: 6rem 0;
+        /* Games Section - Main content area */
+        .games-section {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            padding: clamp(1rem, 2vh, 2rem);
+            min-height: 0;
         }
 
         .games-showcase {
             position: relative;
             width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
+            max-width: 100%;
             perspective: 1000px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
         .games-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: clamp(0.5rem, 2vw, 2rem);
             transform-style: preserve-3d;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .game {
             position: relative;
-            width: 320px;
-            height: 240px;
-            border-radius: 20px;
+            width: clamp(200px, 25vw, 320px);
+            height: clamp(150px, 18vw, 240px);
+            border-radius: 15px;
             overflow: hidden;
             background-color: var(--bg-secondary);
             background-size: cover;
@@ -245,27 +242,20 @@
             cursor: pointer;
             text-decoration: none;
             backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             transform-style: preserve-3d;
+            flex: 0 0 auto;
         }
 
-        /* Center game (featured) */
         .game.center {
-            width: 400px;
-            height: 300px;
+            width: clamp(250px, 30vw, 400px);
+            height: clamp(190px, 22vw, 300px);
             z-index: 3;
-            transform: scale(1.1) rotateY(0deg);
+            transform: scale(1.1);
         }
 
-        /* Side games */
-        .game.left {
-            transform: rotateY(35deg) translateZ(-50px);
-            opacity: 0.8;
-            z-index: 2;
-        }
-
+        .game.left,
         .game.right {
-            transform: rotateY(-35deg) translateZ(-50px);
             opacity: 0.8;
             z-index: 2;
         }
@@ -281,7 +271,7 @@
                 var(--primary-red), 
                 var(--primary-pink), 
                 var(--accent-purple));
-            border-radius: 22px;
+            border-radius: 17px;
             opacity: 0;
             transition: opacity 0.3s ease;
             z-index: -2;
@@ -289,8 +279,8 @@
         }
 
         .game:hover {
-            transform: scale(1.15) rotateY(0deg) translateZ(30px);
-            box-shadow: 0 25px 50px rgba(255, 23, 68, 0.3);
+            transform: scale(1.15) translateZ(30px);
+            box-shadow: 0 20px 40px rgba(255, 23, 68, 0.3);
             z-index: 10;
             opacity: 1;
         }
@@ -299,23 +289,21 @@
             opacity: 0;
         }
 
-        /* Ensure game content stays above any overlays */
         .game > * {
             position: relative;
             z-index: 1;
         }
 
-        /* Game title overlay */
         .game-title {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 2rem 1.5rem 1rem;
+            padding: clamp(1rem, 3vh, 2rem) clamp(0.5rem, 2vw, 1.5rem) clamp(0.5rem, 2vh, 1rem);
             color: white;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: clamp(0.8rem, 2.5vw, 1.1rem);
             text-align: center;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -327,26 +315,27 @@
         }
 
         /* Footer */
-        footer {
-            padding: 2rem 0;
+        .footer-section {
+            flex: 0 0 auto;
+            padding: clamp(1rem, 2vh, 2rem);
             border-top: 1px solid var(--glass-border);
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
         }
 
-        footer .inner-container {
+        .footer-content {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: clamp(1rem, 3vw, 2rem);
         }
 
-        footer a {
+        .footer-content a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: clamp(35px, 6vw, 50px);
+            height: clamp(35px, 6vw, 50px);
             border-radius: 50%;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
@@ -354,108 +343,97 @@
             text-decoration: none;
         }
 
-        footer a:hover {
+        .footer-content a:hover {
             transform: translateY(-2px) scale(1.05);
             background: linear-gradient(45deg, var(--primary-red), var(--primary-pink));
             box-shadow: 0 8px 16px rgba(255, 23, 68, 0.2);
         }
 
-        footer a img,
-        footer a svg {
+        .footer-content a img,
+        .footer-content a svg {
             transition: all 0.3s ease;
+            width: clamp(16px, 3vw, 24px);
+            height: clamp(16px, 3vw, 24px);
         }
 
-        footer a:hover img,
-        footer a:hover svg {
+        .footer-content a:hover img,
+        .footer-content a:hover svg {
             filter: brightness(1.2);
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
             .games-container {
                 flex-direction: column;
-                gap: 2rem;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                gap: clamp(0.5rem, 2vh, 1rem);
             }
 
+            .game,
+            .game.center,
             .game.left,
             .game.right {
+                width: clamp(200px, 80vw, 300px);
+                height: clamp(120px, 15vh, 160px);
                 transform: none;
                 opacity: 1;
             }
 
-            .game {
-                width: 350px;
-                height: 250px;
-            }
-
-            .game.center {
-                width: 400px;
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .inner-container {
-                padding: 0 1rem;
-            }
-
-            .game,
-            .game.center {
-                width: 100%;
-                max-width: 350px;
-                height: 200px;
-            }
-
             .about-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
             }
 
-            .logo {
-                width: 60px;
-                height: 60px;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            #games {
-                padding: 4rem 0;
-            }
-
-            #about {
-                padding: 4rem 0 3rem 0;
+            .about-section {
+                min-height: clamp(120px, 20vh, 180px);
             }
         }
 
         @media (max-width: 480px) {
+            .about-header {
+                gap: 0.5rem;
+            }
+            
+            .games-container {
+                gap: 0.5rem;
+            }
+
             .game,
-            .game.center {
-                height: 180px;
+            .game.center,
+            .game.left,
+            .game.right {
+                width: clamp(180px, 85vw, 280px);
+                height: clamp(100px, 12vh, 140px);
             }
+        }
 
-            h1 {
-                font-size: 2rem;
+        /* Very small screens */
+        @media (max-height: 500px) {
+            .about-section {
+                min-height: 80px;
+                padding: 0.5rem;
             }
-
-            footer .inner-container {
-                gap: 1rem;
+            
+            .about-text {
+                font-size: 0.8rem;
+                line-height: 1.4;
             }
-
-            footer a {
-                width: 40px;
-                height: 40px;
+            
+            .games-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
             }
-
-            .logo {
-                width: 50px;
-                height: 50px;
+            
+            .game,
+            .game.center,
+            .game.left,
+            .game.right {
+                width: clamp(100px, 25vw, 150px);
+                height: clamp(75px, 15vh, 100px);
             }
         }
 
@@ -470,9 +448,8 @@
             }
         }
 
-        /* Focus styles for accessibility */
         .game:focus,
-        footer a:focus {
+        .footer-content a:focus {
             outline: 2px solid var(--primary-pink);
             outline-offset: 2px;
         }
@@ -481,23 +458,21 @@
 <body>
     <div class="gradient-overlay"></div>
     <div class="game-bg-overlay" id="gameBgOverlay"></div>
-    <div class="content">        
-        <section id="about">
-            <div class="inner-container">
-                <div class="about-header">
-                    <div class="logo">
-                        <img src="https://img.itch.zone/aW1nLzIxNDYyMTI0LmdpZg==/70x70%23/mQEahx.gif" alt="Cyber752 Logo">
-                    </div>
-                    <h1>Hola!<span class="emoji">&nbsp;👋</span></h1>
+    
+    <div class="main-container">        
+        <section class="about-section">
+            <div class="about-header">
+                <div class="logo">
+                    <img src="https://img.itch.zone/aW1nLzIxNDYyMTI0LmdpZg==/70x70%23/mQEahx.gif" alt="Cyber752 Logo">
                 </div>
-                <br/>
-                <p>                    
-                    <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br/> "A game to be feared not by graphics but by atmosphere."
-                </p>
+                <h1>Hola!<span class="emoji">&nbsp;👋</span></h1>
             </div>
+            <p class="about-text">                    
+                <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br/> "A game to be feared not by graphics but by atmosphere."
+            </p>
         </section>
 
-        <section id="games">
+        <section class="games-section">
             <div class="games-showcase">
                 <div class="games-container">
                     <a class="game left" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank" 
@@ -522,19 +497,19 @@
             </div>
         </section>
 
-        <footer>
-            <div class="inner-container">
+        <footer class="footer-section">
+            <div class="footer-content">
                 <a href="https://store.steampowered.com/search/?developer=Cyber752" title="Steam" target="_blank" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1024px-Steam_icon_logo.svg.png" alt="Steam" width="24" height="24">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1024px-Steam_icon_logo.svg.png" alt="Steam">
                 </a>
                 <a href="https://www.youtube.com/@cyber752/" title="YouTube" target="_blank" rel="noopener">
-                    <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" width="22" height="22" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" fill="currentColor">
                         <title>YouTube</title>
                         <path d="M501.469 132.905c-5.906-22.245-23.422-39.76-45.667-45.667C414.51 80 256 80 256 80s-158.51 0-199.802 7.238c-22.245 5.906-39.76 23.422-45.667 45.667C3.293 174.198 3.293 256 3.293 256s0 81.802 7.238 123.095c5.906 22.245 23.422 39.76 45.667 45.667C97.49 432 256 432 256 432s158.51 0 199.802-7.238c22.245-5.906 39.76-23.422 45.667-45.667 7.238-41.293 7.238-123.095 7.238-123.095s0-81.802-7.238-123.095zM208 320V192l122.667 64L208 320z"/>
                     </svg>
                 </a>
                 <a href="https://cyber752.itch.io/" title="Itch.io" target="_blank" rel="noopener">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="22" viewBox="0 0 245.371 220.736" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245.371 220.736" fill="currentColor">
                         <path d="M31.99 1.365C21.287 7.72.2 31.945 0 38.298v10.516C0 62.144 12.46 73.86 23.773 73.86c13.584 0 24.902-11.258 24.903-24.62 0 13.362 10.93 24.62 24.515 24.62 13.586 0 24.165-11.258 24.165-24.62 0 13.362 11.622 24.62 25.207 24.62h.246c13.586 0 25.208-11.258 25.208-24.62 0 13.362 10.58 24.62 24.164 24.62 13.585 0 24.515-11.258 24.515-24.62 0 13.362 11.32 24.62 24.903 24.62 11.313 0 23.773-11.714 23.773-25.046V38.298c-.2-6.354-21.287-30.58-31.988-36.933C180.118.197 157.056-.005 122.685 0c-34.37.003-81.228.54-90.697 1.365zm65.194 66.217a28.025 28.025 0 0 1-4.78 6.155c-5.128 5.014-12.157 8.122-19.906 8.122a28.482 28.482 0 0 1-19.948-8.126c-1.858-1.82-3.27-3.766-4.563-6.032l-.006.004c-1.292 2.27-3.092 4.215-4.954 6.037a28.5 28.5 0 0 1-19.948 8.12c-.934 0-1.906-.258-2.692-.528-1.092 11.372-1.553 22.24-1.716 30.164l-.002.045c-.02 4.024-.04 7.333-.06 11.93.21 23.86-2.363 77.334 10.52 90.473 19.964 4.655 56.7 6.775 93.555 6.788h.006c36.854-.013 73.59-2.133 93.554-6.788 12.883-13.14 10.31-66.614 10.52-90.474-.022-4.596-.04-7.905-.06-11.93l-.003-.045c-.162-7.926-.623-18.793-1.715-30.165-.786.27-1.757.528-2.692.528a28.5 28.5 0 0 1-19.948-8.12c-1.862-1.822-3.662-3.766-4.955-6.037l-.006-.004c-1.294 2.266-2.705 4.213-4.563 6.032a28.48 28.48 0 0 1-19.947 8.125c-7.748 0-14.778-3.11-19.906-8.123a28.025 28.025 0 0 1-4.78-6.155 27.99 27.99 0 0 1-4.736 6.155 28.49 28.49 0 0 1-19.95 8.124c-.27 0-.54-.012-.81-.02h-.007c-.27.008-.54.02-.813.02a28.49 28.49 0 0 1-19.95-8.123 27.992 27.992 0 0 1-4.736-6.155zm-20.486 26.49l-.002.01h.015c8.113.017 15.32 0 24.25 9.746 7.028-.737 14.372-1.105 21.722-1.094h.006c7.35-.01 14.694.357 21.723 1.094 8.93-9.747 16.137-9.73 24.25-9.746h.014l-.002-.01c3.833 0 19.166 0 29.85 30.007L210 165.244c8.504 30.624-2.723 31.373-16.727 31.4-20.768-.773-32.267-15.855-32.267-30.935-11.496 1.884-24.907 2.826-38.318 2.827h-.006c-13.412 0-26.823-.943-38.318-2.827 0 15.08-11.5 30.162-32.267 30.935-14.004-.027-25.23-.775-16.726-31.4L46.85 124.08C57.534 94.073 72.867 94.073 76.7 94.073zm45.985 23.582v.006c-.02.02-21.863 20.08-25.79 27.215l14.304-.573v12.474c0 .584 5.74.346 11.486.08h.006c5.744.266 11.485.504 11.485-.08v-12.474l14.304.573c-3.928-7.135-25.79-27.215-25.79-27.215v-.006l-.003.002z"/>
                     </svg>
                 </a>
@@ -543,20 +518,31 @@
     </div>
 
     <script>
-        // JavaScript to handle background image changes on hover
         const games = document.querySelectorAll('.game');
         const bgOverlay = document.getElementById('gameBgOverlay');
+        let lastHoveredImage = '';
 
         games.forEach(game => {
             game.addEventListener('mouseenter', function() {
                 const bgImage = this.getAttribute('data-bg-image');
+                lastHoveredImage = bgImage;
                 bgOverlay.style.backgroundImage = `url('${bgImage}')`;
                 bgOverlay.classList.add('active');
             });
 
-            game.addEventListener('mouseleave', function() {
-                bgOverlay.classList.remove('active');
-            });
+            // Remove the mouseleave event that was clearing the background
+            // Now the background persists until another game is hovered
+        });
+
+        // Optional: Set initial background to the center game
+        document.addEventListener('DOMContentLoaded', function() {
+            const centerGame = document.querySelector('.game.center');
+            if (centerGame) {
+                const initialBg = centerGame.getAttribute('data-bg-image');
+                lastHoveredImage = initialBg;
+                bgOverlay.style.backgroundImage = `url('${initialBg}')`;
+                bgOverlay.classList.add('active');
+            }
         });
     </script>
 </body>
