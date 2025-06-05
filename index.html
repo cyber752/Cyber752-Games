@@ -286,7 +286,8 @@
             border-radius: 22px;
             opacity: 0;
             transition: opacity 0.3s ease;
-            z-index: -1;
+            z-index: -2;
+            pointer-events: none;
         }
 
         .game:hover {
@@ -298,6 +299,12 @@
 
         .game:hover::after {
             opacity: 1;
+        }
+
+        /* Ensure game content stays above any overlays */
+        .game > * {
+            position: relative;
+            z-index: 1;
         }
 
         /* Game title overlay */
