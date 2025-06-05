@@ -1,5 +1,2 @@
-My simple game developer portfolio hosted on GitHub Pages.
-
-Check it out by accessing <https://julianabmgil.github.io/gamedev/>
-
-Updates coming soon!
+My simple game developer portfolio is hosted on GitHub Pages.
+Check it out by accessing <https://cyber752.github.io/Cyber752-Games/>
