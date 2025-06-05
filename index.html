@@ -58,8 +58,28 @@
                 radial-gradient(circle at var(--x3, 40%) var(--y3, 40%), rgba(156, 39, 176, 0.04) 0%, transparent 50%),
                 linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
             pointer-events: none;
-            z-index: -1;
+            z-index: -2;
             animation: gradientShift 15s ease-in-out infinite;
+        }
+
+        /* New background image overlay for hovered games */
+        .game-bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .game-bg-overlay.active {
+            opacity: 0.05;
         }
 
         @keyframes gradientShift {
@@ -99,147 +119,12 @@
             padding: 0 2rem;
         }
 
-        /* Games Section - Cinematic Layout */
-        #games {
-            padding: 6rem 0;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-
-        .games-showcase {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            perspective: 1000px;
-        }
-
-        .games-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            transform-style: preserve-3d;
-        }
-
-        .game {
-            position: relative;
-            width: 320px;
-            height: 240px;
-            border-radius: 20px;
-            overflow: hidden;
-            background-color: var(--bg-secondary);
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 2px solid transparent;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            text-decoration: none;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transform-style: preserve-3d;
-        }
-
-        /* Center game (featured) */
-        .game.center {
-            width: 400px;
-            height: 300px;
-            z-index: 3;
-            transform: scale(1.1) rotateY(0deg);
-        }
-
-        /* Side games */
-        .game.left {
-            transform: rotateY(35deg) translateZ(-50px);
-            opacity: 0.8;
-            z-index: 2;
-        }
-
-        .game.right {
-            transform: rotateY(-35deg) translateZ(-50px);
-            opacity: 0.8;
-            z-index: 2;
-        }
-
-        .game::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                rgba(255, 23, 68, 0.1) 0%, 
-                rgba(233, 30, 99, 0.1) 50%, 
-                rgba(156, 39, 176, 0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-        }
-
-        .game::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, 
-                var(--primary-red), 
-                var(--primary-pink), 
-                var(--accent-purple));
-            border-radius: 22px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .game:hover {
-            transform: scale(1.15) rotateY(0deg) translateZ(30px);
-            box-shadow: 0 25px 50px rgba(255, 23, 68, 0.3);
-            z-index: 10;
-            opacity: 1;
-        }
-
-        .game:hover::before {
-            opacity: 1;
-        }
-
-        .game:hover::after {
-            opacity: 1;
-        }
-
-        /* Game title overlay */
-        .game-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 2rem 1.5rem 1rem;
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 2;
-        }
-
-        .game:hover .game-title {
-            opacity: 1;
-        }
-
-        /* About Section */
+        /* About Section - Now on top */
         #about {
-            padding: 4rem 0;
+            padding: 6rem 0 4rem 0;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         #about .inner-container {
@@ -317,6 +202,123 @@
             margin-top: 1rem;
             font-size: 1rem;
             opacity: 0.9;
+        }
+
+        /* Games Section - Cinematic Layout */
+        #games {
+            padding: 6rem 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .games-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .games-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform-style: preserve-3d;
+        }
+
+        .game {
+            position: relative;
+            width: 320px;
+            height: 240px;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: var(--bg-secondary);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 2px solid transparent;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+        }
+
+        /* Center game (featured) */
+        .game.center {
+            width: 400px;
+            height: 300px;
+            z-index: 3;
+            transform: scale(1.1) rotateY(0deg);
+        }
+
+        /* Side games */
+        .game.left {
+            transform: rotateY(35deg) translateZ(-50px);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        .game.right {
+            transform: rotateY(-35deg) translateZ(-50px);
+            opacity: 0.8;
+            z-index: 2;
+        }
+
+        /* Removed the ::before gradient overlay that was obscuring the image */
+
+        .game::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                var(--primary-red), 
+                var(--primary-pink), 
+                var(--accent-purple));
+            border-radius: 22px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .game:hover {
+            transform: scale(1.15) rotateY(0deg) translateZ(30px);
+            box-shadow: 0 25px 50px rgba(255, 23, 68, 0.3);
+            z-index: 10;
+            opacity: 1;
+        }
+
+        .game:hover::after {
+            opacity: 1;
+        }
+
+        /* Game title overlay */
+        .game-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 2rem 1.5rem 1rem;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .game:hover .game-title {
+            opacity: 1;
         }
 
         /* Footer */
@@ -421,6 +423,10 @@
             #games {
                 padding: 4rem 0;
             }
+
+            #about {
+                padding: 4rem 0 3rem 0;
+            }
         }
 
         @media (max-width: 480px) {
@@ -469,29 +475,8 @@
 </head>
 <body>
     <div class="gradient-overlay"></div>
+    <div class="game-bg-overlay" id="gameBgOverlay"></div>
     <div class="content">        
-        <section id="games">
-            <div class="games-showcase">
-                <div class="games-container">
-                    <a class="game left" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank" 
-                       style="background-image: url('/Cyber752-Games/Images/WARN.png');" 
-                       aria-label="Warning - Horror Game on Steam">
-                        <div class="game-title">Warning</div>
-                    </a>
-                    <a class="game center" href="https://store.steampowered.com/app/3487660/The_Bunker/" target="_blank" 
-                       style="background-image: url('/Cyber752-Games/Images/BUNK.png');" 
-                       aria-label="The Bunker - Horror Game on Steam">
-                        <div class="game-title">The Bunker</div>
-                    </a>
-                    <a class="game right" href="https://store.steampowered.com/app/3552050/Burger_Witch/" target="_blank" 
-                       style="background-image: url('/Cyber752-Games/Images/BURG.png');" 
-                       aria-label="Burger Witch - Horror Game on Steam">
-                        <div class="game-title">Burger Witch</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
         <section id="about">
             <div class="inner-container">
                 <div class="about-header">
@@ -504,6 +489,31 @@
                 <p>                    
                     <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br/> "A game to be feared not by graphics but by atmosphere."
                 </p>
+            </div>
+        </section>
+
+        <section id="games">
+            <div class="games-showcase">
+                <div class="games-container">
+                    <a class="game left" href="https://store.steampowered.com/app/3602540/Warning/" target="_blank" 
+                       style="background-image: url('/Cyber752-Games/Images/WARN.png');" 
+                       aria-label="Warning - Horror Game on Steam"
+                       data-bg-image="/Cyber752-Games/Images/WARN.png">
+                        <div class="game-title">Warning</div>
+                    </a>
+                    <a class="game center" href="https://store.steampowered.com/app/3487660/The_Bunker/" target="_blank" 
+                       style="background-image: url('/Cyber752-Games/Images/BUNK.png');" 
+                       aria-label="The Bunker - Horror Game on Steam"
+                       data-bg-image="/Cyber752-Games/Images/BUNK.png">
+                        <div class="game-title">The Bunker</div>
+                    </a>
+                    <a class="game right" href="https://store.steampowered.com/app/3552050/Burger_Witch/" target="_blank" 
+                       style="background-image: url('/Cyber752-Games/Images/BURG.png');" 
+                       aria-label="Burger Witch - Horror Game on Steam"
+                       data-bg-image="/Cyber752-Games/Images/BURG.png">
+                        <div class="game-title">Burger Witch</div>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -526,5 +536,23 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        // JavaScript to handle background image changes on hover
+        const games = document.querySelectorAll('.game');
+        const bgOverlay = document.getElementById('gameBgOverlay');
+
+        games.forEach(game => {
+            game.addEventListener('mouseenter', function() {
+                const bgImage = this.getAttribute('data-bg-image');
+                bgOverlay.style.backgroundImage = `url('${bgImage}')`;
+                bgOverlay.classList.add('active');
+            });
+
+            game.addEventListener('mouseleave', function() {
+                bgOverlay.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
