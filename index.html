@@ -57,10 +57,11 @@
                 radial-gradient(circle at var(--x1, 20%) var(--y1, 80%), rgba(255, 23, 68, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at var(--x2, 80%) var(--y2, 20%), rgba(233, 30, 99, 0.06) 0%, transparent 50%),
                 radial-gradient(circle at var(--x3, 40%) var(--y3, 40%), rgba(156, 39, 176, 0.04) 0%, transparent 50%),
-                linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(15, 15, 15, 0.95) 100%);
+                linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(15, 15, 15, 0.9) 100%);
             pointer-events: none;
             z-index: -2;
             animation: gradientShift 15s ease-in-out infinite;
+            transition: opacity 0.8s ease;
         }
 
         .game-bg-overlay {
@@ -73,15 +74,23 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0;
-            transition: opacity 1s ease, transform 0.8s ease;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
-            z-index: -1;
-            filter: blur(1px) brightness(0.3) saturate(1.2);
+            z-index: -3;
+            filter: blur(2px) brightness(0.4) saturate(1.3) contrast(1.1);
+            transform: scale(1.1);
         }
 
         .game-bg-overlay.active {
-            opacity: 0.15;
+            opacity: 0.25;
             transform: scale(1.05);
+            filter: blur(1px) brightness(0.35) saturate(1.4) contrast(1.2);
+        }
+
+        .game-bg-overlay.intense {
+            opacity: 0.35;
+            transform: scale(1.02);
+            filter: blur(0.5px) brightness(0.3) saturate(1.5) contrast(1.3);
         }
 
         @keyframes gradientShift {
@@ -127,6 +136,12 @@
             align-items: center;
             text-align: center;
             min-height: clamp(200px, 30vh, 300px);
+            transition: backdrop-filter 0.8s ease;
+        }
+
+        .about-section.bg-active {
+            backdrop-filter: blur(25px);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .about-header {
@@ -190,6 +205,12 @@
             color: var(--text-secondary);
             line-height: 1.6;
             max-width: 90%;
+            transition: color 0.8s ease;
+        }
+
+        .about-text.bg-active {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .about-text b {
@@ -410,6 +431,12 @@
             border-top: 1px solid var(--glass-border);
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
+            transition: backdrop-filter 0.8s ease;
+        }
+
+        .footer-section.bg-active {
+            backdrop-filter: blur(25px);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .footer-content {
@@ -553,18 +580,18 @@
     </style>
 </head>
 <body>
-    <div class="gradient-overlay"></div>
+    <div class="gradient-overlay" id="gradientOverlay"></div>
     <div class="game-bg-overlay" id="gameBgOverlay"></div>
     
     <div class="main-container">        
-        <section class="about-section">
+        <section class="about-section" id="aboutSection">
             <div class="about-header">
                 <div class="logo">
                     <img src="https://img.itch.zone/aW1nLzIxNDYyMTI0LmdpZg==/70x70%23/mQEahx.gif" alt="Cyber752 Logo">
                 </div>
                 <h1>Hola!<span class="emoji">&nbsp;👋</span></h1>
             </div>
-            <p class="about-text">                    
+            <p class="about-text" id="aboutText">                    
                 <b>Greetings, wanderer...</b>, I make horror-themed games, among other things. <br/> "A game to be feared not by graphics but by atmosphere."
             </p>
         </section>
@@ -597,16 +624,13 @@
             </div>
         </section>
 
-        <footer class="footer-section">
+        <footer class="footer-section" id="footerSection">
             <div class="footer-content">
                 <a href="https://store.steampowered.com/search/?developer=Cyber752" title="Steam" target="_blank" rel="noopener">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1024px-Steam_icon_logo.svg.png" alt="Steam">
                 </a>
-                <a href="https://www.youtube.com/@cyber752/" title="YouTube" target="_blank" rel="noopener">More actions
-                    <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 512 512" width="22" height="22" fill="currentColor">
-                        <title>YouTube</title>
-                        <path d="M501.469 132.905c-5.906-22.245-23.422-39.76-45.667-45.667C414.51 80 256 80 256 80s-158.51 0-199.802 7.238c-22.245 5.906-39.76 23.422-45.667 45.667C3.293 174.198 3.293 256 3.293 256s0 81.802 7.238 123.095c5.906 22.245 23.422 39.76 45.667 45.667C97.49 432 256 432 256 432s158.51 0 199.802-7.238c22.245-5.906 39.76-23.422 45.667-45.667 7.238-41.293 7.238-123.095 7.238-123.095s0-81.802-7.238-123.095zM208 320V192l122.667 64L208 320z"/>
-                    </svg>
+                <a href="https://www.youtube.com/@cyber752/" title="YouTube" target="_blank" rel="noopener">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube">
                 </a>
                 <a href="https://cyber752.itch.io/" title="Itch.io" target="_blank" rel="noopener">
                     <img src="https://static.itch.io/images/app-icon.svg" alt="Itch.io">
@@ -618,15 +642,26 @@
     <script>
         const games = document.querySelectorAll('.game');
         const bgOverlay = document.getElementById('gameBgOverlay');
+        const gradientOverlay = document.getElementById('gradientOverlay');
+        const aboutSection = document.getElementById('aboutSection');
+        const aboutText = document.getElementById('aboutText');
+        const footerSection = document.getElementById('footerSection');
         let lastHoveredImage = '';
+        let currentBgTimeout = null;
 
-        // Enhanced hover effects with particle generation
+        // Enhanced hover effects with persistent background
         games.forEach(game => {
             game.addEventListener('mouseenter', function() {
                 const bgImage = this.getAttribute('data-bg-image');
-                lastHoveredImage = bgImage;
-                bgOverlay.style.backgroundImage = `url('${bgImage}')`;
-                bgOverlay.classList.add('active');
+                
+                // Clear any existing timeout
+                if (currentBgTimeout) {
+                    clearTimeout(currentBgTimeout);
+                    currentBgTimeout = null;
+                }
+                
+                // Update the background immediately
+                updateBackground(bgImage, true);
                 
                 // Generate particles on hover
                 generateParticles(this);
@@ -654,13 +689,43 @@
                     this.style.transform = '';
                 }
                 clearParticles(this);
+                
+                // The background stays persistent - no change on mouse leave
+            });
+
+            // Touch events for mobile
+            game.addEventListener('touchstart', function() {
+                const bgImage = this.getAttribute('data-bg-image');
+                updateBackground(bgImage, true);
             });
         });
+
+        // Function to update background with enhanced effects
+        function updateBackground(imagePath, isHovered = false) {
+            lastHoveredImage = imagePath;
+            bgOverlay.style.backgroundImage = `url('${imagePath}')`;
+            
+            // Remove existing classes
+            bgOverlay.classList.remove('active', 'intense');
+            
+            // Add appropriate class with slight delay for smooth transition
+            setTimeout(() => {
+                bgOverlay.classList.add(isHovered ? 'intense' : 'active');
+            }, 50);
+
+            // Update UI elements to complement the background
+            aboutSection.classList.add('bg-active');
+            aboutText.classList.add('bg-active');
+            footerSection.classList.add('bg-active');
+            
+            // Slightly dim the gradient overlay when background is active
+            gradientOverlay.style.opacity = '0.8';
+        }
 
         // Particle generation function
         function generateParticles(gameElement) {
             const particlesContainer = gameElement.querySelector('.game-particles');
-            const particleCount = 6;
+            const particleCount = 8;
             
             for (let i = 0; i < particleCount; i++) {
                 setTimeout(() => {
@@ -671,6 +736,10 @@
                     particle.style.animationDelay = Math.random() * 2 + 's';
                     particle.style.animationDuration = (2 + Math.random() * 2) + 's';
                     
+                    // Vary particle colors
+                    const colors = ['#FF1744', '#E91E63', '#9C27B0'];
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    
                     particlesContainer.appendChild(particle);
                     
                     // Remove particle after animation
@@ -678,8 +747,8 @@
                         if (particle.parentNode) {
                             particle.parentNode.removeChild(particle);
                         }
-                    }, 3000);
-                }, i * 200);
+                    }, 4000);
+                }, i * 150);
             }
         }
 
@@ -693,9 +762,9 @@
             const centerGame = document.querySelector('.game.center');
             if (centerGame) {
                 const initialBg = centerGame.getAttribute('data-bg-image');
-                lastHoveredImage = initialBg;
-                bgOverlay.style.backgroundImage = `url('${initialBg}')`;
-                bgOverlay.classList.add('active');
+                setTimeout(() => {
+                    updateBackground(initialBg, false);
+                }, 500);
             }
 
             // Add mobile detection
@@ -722,6 +791,3 @@
 
         // Add smooth scroll behavior for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
-    </script>
-</body>
-</html>
